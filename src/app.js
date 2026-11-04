@@ -202,8 +202,8 @@
             <div class="pack-grid pack-grid-small">${packs.map((pack) => renderFolderCard(pack, true)).join('')}${state.packs.length < 3 ? renderQuickCreateCard() : ''}</div>
           </section>
           <section class="space-block panel" aria-labelledby="space-saved-title">
-            <div class="section-heading"><div><h2 id="space-saved-title">Saved resources</h2><p>Keep useful materials close at hand.</p></div><button class="text-link" type="button" data-action="show-saved">View all ${icon('chevron')}</button></div>
-            ${saved.length ? `<div class="bento-saved">${saved.map((resource) => renderSmallResource(resource)).join('')}</div>` : emptyState('bookmark', 'No saved resources yet', 'Save a resource in Library and it will appear here.')}
+            <div class="section-heading"><div><h2 id="space-saved-title">Saved Resources</h2><p>Keep useful materials close at hand.</p></div><button class="text-link" type="button" data-action="show-saved">View all ${icon('chevron')}</button></div>
+            ${saved.length ? `<div class="bento-saved">${saved.map((resource) => renderSmallResource(resource)).join('')}</div>` : emptyState('heart', 'No saved resources yet', 'Save a resource in Library and it will appear here.')}
           </section>
         </div>
         <aside class="space-aside">
@@ -262,7 +262,7 @@
         <div class="resource-card-head"><span class="resource-card-title">${escapeHtml(resource.title)}</span>
           <span class="resource-tools">
             <button class="circle-action ${justAdded ? 'is-added' : ''}" type="button" data-action="open-pack-picker" data-resource-id="${escapeHtml(resource.id)}" data-focus-key="add-${escapeHtml(resource.id)}" aria-label="${justAdded ? 'Added to a Lesson Pack' : 'Add to a Lesson Pack'}" aria-haspopup="menu">${icon(justAdded ? 'check' : 'plus')}</button>
-            <button class="circle-action ${saved ? 'is-saved' : ''}" type="button" data-action="toggle-favorite" data-resource-id="${escapeHtml(resource.id)}" aria-label="${saved ? 'Remove from saved resources' : 'Save resource'}" aria-pressed="${saved}">${icon('bookmark')}</button>
+            <button class="circle-action save-heart ${saved ? 'is-saved' : ''}" type="button" data-action="toggle-favorite" data-resource-id="${escapeHtml(resource.id)}" aria-label="${saved ? 'Remove from Saved Resources' : 'Save resource'}" aria-pressed="${saved}">${icon('heart')}</button>
           </span>
         </div>
         <div class="resource-meta">${tagsFor(resource)}</div>
@@ -278,7 +278,7 @@
     const filterButtons = facetOrder.map(renderFacetTrigger).join('');
     const cards = resources.map(renderResourceCard).join('');
     const searchActions = `<button class="icon-button search-clear" type="button" data-action="clear-query" aria-label="Clear search" ${state.query ? '' : 'hidden'}>${icon('close')}</button>`;
-    const libraryHeading = state.savedOnly ? ['MY SPACE', 'Saved resources', 'Your bookmarked teaching materials.'] : ['RESOURCE LIBRARY', 'Find your next lesson', 'Search by teaching goal, level, skill, or a phrase you remember.'];
+    const libraryHeading = state.savedOnly ? ['MY SPACE', 'Saved Resources', 'Your saved teaching materials.'] : ['RESOURCE LIBRARY', 'Find your next lesson', 'Search by teaching goal, level, skill, or a phrase you remember.'];
     const libraryActions = state.savedOnly ? `<button class="button button-quiet" type="button" data-action="show-all-library">Show all resources</button>` : '';
     return `${renderHeader(...libraryHeading, libraryActions)}
       <section class="library-toolbar" aria-label="Search and filter resources">
@@ -413,7 +413,7 @@
       <div class="preview-body">${previewResourceArea(resource, selected)}<p class="preview-description">${escapeHtml(resource.description)}</p><div class="preview-tags">${tagsFor(resource, 4)}</div>
         <div class="preview-asset-heading"><span>Files in this resource</span><span class="section-kicker">${resourceAssets.length}</span></div><div class="asset-list">${assetList || `<span class="form-help">No files attached.</span>`}</div>
       </div>
-      <footer class="preview-footer"><button class="icon-button ${saved ? 'is-saved' : ''}" type="button" data-action="toggle-favorite" data-resource-id="${escapeHtml(resource.id)}" aria-label="${saved ? 'Remove from saved resources' : 'Save resource'}" aria-pressed="${saved}">${icon('bookmark')}</button><button class="button button-secondary preview-add" type="button" data-action="open-pack-picker" data-resource-id="${escapeHtml(resource.id)}" aria-haspopup="menu">${icon('plus')} Add</button><button class="button button-primary preview-open" type="button" data-action="open-asset" data-resource-id="${escapeHtml(resource.id)}" data-asset-id="${escapeHtml(selected?.id || '')}">${icon(selected?.kind === 'download' ? 'download' : selected?.kind === 'external' ? 'external' : 'file')} ${actionLabel}</button></footer>
+      <footer class="preview-footer"><button class="icon-button save-heart ${saved ? 'is-saved' : ''}" type="button" data-action="toggle-favorite" data-resource-id="${escapeHtml(resource.id)}" aria-label="${saved ? 'Remove from Saved Resources' : 'Save resource'}" aria-pressed="${saved}">${icon('heart')}</button><button class="button button-secondary preview-add" type="button" data-action="open-pack-picker" data-resource-id="${escapeHtml(resource.id)}" aria-haspopup="menu">${icon('plus')} Add</button><button class="button button-primary preview-open" type="button" data-action="open-asset" data-resource-id="${escapeHtml(resource.id)}" data-asset-id="${escapeHtml(selected?.id || '')}">${icon(selected?.kind === 'download' ? 'download' : selected?.kind === 'external' ? 'external' : 'file')} ${actionLabel}</button></footer>
     </aside></div>`;
   }
 
@@ -576,7 +576,7 @@
     if (isSaved(resourceId)) state.favorites = state.favorites.filter((id) => id !== resourceId);
     else state.favorites = [resourceId, ...state.favorites];
     render();
-    showToast(isSaved(resourceId) ? 'Saved to My Space' : 'Removed from saved resources');
+    showToast(isSaved(resourceId) ? 'Added to Saved Resources' : 'Removed from Saved Resources');
   }
 
   function addToPack(packId, resourceId) {

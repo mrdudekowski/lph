@@ -59,6 +59,7 @@ button { cursor: pointer; }
 button:disabled { cursor: not-allowed; opacity: .48; }
 a { color: inherit; text-decoration: none; }
 img, svg { display: block; }
+.icon8 { flex: 0 0 auto; background: currentColor; -webkit-mask: var(--icon8-src) center / contain no-repeat; mask: var(--icon8-src) center / contain no-repeat; }
 ::selection { background: color-mix(in srgb, var(--blue) 38%, transparent); }
 
 :focus-visible {
@@ -309,8 +310,15 @@ img, svg { display: block; }
 .circle-action:active { transform: scale(.92); }
 .circle-action .icon { width: 18px; height: 18px; }
 .circle-action.is-added { background: var(--blue-soft); color: var(--blue-ink); animation: add-pop 280ms var(--ease-out); }
-.circle-action.is-saved { color: var(--blue); }
-.circle-action.is-saved svg { fill: color-mix(in srgb, var(--blue) 14%, transparent); }
+.circle-action.save-heart .icon-heart, .preview-footer .save-heart .icon-heart { transition: transform 220ms cubic-bezier(.2,.75,.25,1), color 160ms ease; }
+.circle-action.save-heart:hover .icon-heart, .preview-footer .save-heart:hover .icon-heart { transform: scale(1.1); }
+.circle-action.is-saved, .preview-footer .save-heart.is-saved { color: var(--blue); }
+.circle-action.is-saved .icon-heart, .preview-footer .save-heart.is-saved .icon-heart { animation: heart-pop 280ms cubic-bezier(.2,.75,.25,1); }
+@keyframes heart-pop { 0% { transform: scale(.72); } 65% { transform: scale(1.18); } 100% { transform: scale(1); } }
+.icon-attribution { max-width: 1180px; margin: 22px auto 10px; color: var(--muted-2); font-size: 10px; text-align: center; }
+.icon-attribution a { color: var(--muted); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--muted) 35%, transparent); text-underline-offset: 2px; }
+.icon-attribution a:hover { color: var(--blue-ink); }
+@media (max-width: 680px) { .icon-attribution { margin: 16px 0 8px; padding: 0 8px; font-size: 9px; } }
 @keyframes add-pop { 0% { transform: scale(.82); } 65% { transform: scale(1.12); } 100% { transform: scale(1); } }
 .resource-meta { display: flex; flex-wrap: wrap; gap: 5px; }
 .tag { display: inline-flex; min-height: 24px; align-items: center; padding: 0 9px; border: 1px solid color-mix(in srgb, var(--glass-border) 75%, var(--line)); border-radius: var(--radius-control); background: color-mix(in srgb, var(--surface-2) 74%, transparent); color: var(--muted); font-size: 10px; font-weight: 600; }

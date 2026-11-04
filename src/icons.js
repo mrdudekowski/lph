@@ -2,7 +2,8 @@
   const paths = {
     home: '<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/>',
     library: '<rect x="3" y="4" width="18" height="17" rx="3"/><path d="M8 4V2.5M16 4V2.5M3 9h18"/><path d="m8 14 2 2 5-5"/>',
-    bookmark: '<path d="M6 4.75A1.75 1.75 0 0 1 7.75 3h8.5A1.75 1.75 0 0 1 18 4.75V21l-6-3.5L6 21z"/>',
+    // Heart component adapted from andrew-demchenk0's MIT-licensed Uiverse checkbox.
+    heart: '<path d="M16.4 4C14.6 4 13 4.9 12 6.3 11 4.9 9.4 4 7.6 4 4.5 4 2 6.5 2 9.6 2 14 12 22 12 22s10-8 10-12.4C22 6.5 19.5 4 16.4 4z"/>',
     folder: '<path d="M3 7.75A2.75 2.75 0 0 1 5.75 5h4.1l2.2 2H18.25A2.75 2.75 0 0 1 21 9.75v7.5A2.75 2.75 0 0 1 18.25 20h-12.5A2.75 2.75 0 0 1 3 17.25z"/>',
     manage: '<path d="M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-5m0-4V3M2 14h4m4-6h4m4 8h4"/>',
     search: '<circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/>',
@@ -45,10 +46,22 @@
     move: '<path d="m8 7 4-4 4 4m-4-4v18m-4-4 4 4 4-4"/>',
   };
 
+  // Tiny Bold interface PNGs are bundled locally and recolored through CSS masks.
+  const tinyBold = {
+    library: 'list', manage: 'settings', search: 'search', plus: 'add', check: 'check',
+    close: 'close', user: 'profile', download: 'download', upload: 'upload',
+    checkCircle: 'checked', info: 'info', menu: 'menu', help: 'help', like: 'like',
+  };
+
   function svg(name, size = 20, extraClass = '') {
+    const iconAsset = tinyBold[name];
+    if (iconAsset) {
+      return `<span class="icon icon8 ${extraClass}" style="--icon8-src:url('assets/icons/tiny-bold/${iconAsset}.png');width:${size}px;height:${size}px" aria-hidden="true"></span>`;
+    }
     const path = paths[name] || paths.file;
-    return `<svg class="icon ${extraClass}" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${path}</svg>`;
+    const heart = name === 'heart';
+    return `<svg class="icon ${heart ? 'icon-heart' : ''} ${extraClass}" width="${size}" height="${size}" viewBox="0 0 24 24" fill="${heart ? 'currentColor' : 'none'}" stroke="${heart ? 'none' : 'currentColor'}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${path}</svg>`;
   }
 
-  root.LPHIcons = Object.freeze({ svg, has: name => Boolean(paths[name]) });
+  root.LPHIcons = Object.freeze({ svg, has: name => Boolean(paths[name] || tinyBold[name]) });
 })(window);
