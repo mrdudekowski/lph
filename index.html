@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f1eb" />
+    <meta name="description" content="A local interactive concept demo for LanguagePower Hub." />
+    <title>LanguagePower Hub — Demo</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="src/demo-data.js"></script>
+    <script defer src="src/core.js"></script>
+    <script defer src="src/icons.js"></script>
+    <script defer src="src/app.js"></script>
+  </head>
+  <body>
+    <div id="app" class="app-shell" data-theme="light">
+      <div class="app-frame" id="app-frame">
+        <aside class="side-rail" aria-label="Primary navigation">
+          <a class="brand-lockup" href="#my-space" data-action="navigate" data-section="my-space" aria-label="LanguagePower Hub home">
+            <span class="brand-mark" aria-hidden="true">L</span>
+            <span class="brand-name">Language<span>Power</span></span>
+          </a>
+          <nav class="primary-nav" id="primary-nav"></nav>
+          <div class="rail-bottom">
+            <div class="demo-note"><span class="status-dot"></span><span>Interactive demo</span></div>
+            <button class="profile-trigger" type="button" data-action="toggle-profile" aria-expanded="false" aria-haspopup="menu">
+              <span class="profile-avatar" aria-hidden="true">M</span>
+              <span class="profile-label"><strong>Methodist</strong><small>LPH workspace</small></span>
+              <span class="profile-chevron" data-icon="chevron-down" aria-hidden="true"></span>
+            </button>
+          </div>
+        </aside>
+        <header class="mobile-topbar">
+          <a class="brand-lockup" href="#my-space" data-action="navigate" data-section="my-space" aria-label="LanguagePower Hub home">
+            <span class="brand-mark" aria-hidden="true">L</span>
+            <span class="brand-name">Language<span>Power</span></span>
+          </a>
+          <button class="icon-button" type="button" data-action="toggle-profile" aria-label="Open profile menu" aria-expanded="false" aria-haspopup="menu"><span data-icon="user"></span></button>
+        </header>
+        <main id="main-content" class="main-content" tabindex="-1">
+          <div id="view-root"></div>
+        </main>
+        <nav class="mobile-nav" id="mobile-nav" aria-label="Primary navigation"></nav>
+        <div id="overlay-root"></div>
+        <div id="popover-root"></div>
+        <div id="toast-root" class="toast-root" aria-live="polite" aria-atomic="true"></div>
+      </div>
+    </div>
+  </body>
+</html>
