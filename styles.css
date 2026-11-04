@@ -230,7 +230,7 @@ img, svg { display: block; }
   color: var(--muted);
   transition: background var(--motion-fast) var(--ease-out), color var(--motion-fast) var(--ease-out), transform var(--motion-fast) var(--ease-out);
 }
-.icon-button:hover { background: color-mix(in srgb, var(--blue-soft) 76%, transparent); color: var(--text); }
+.icon-button:hover { background: transparent; color: var(--text); }
 .icon-button:active { transform: scale(.94); }
 .icon-button .icon { width: 19px; height: 19px; }
 
@@ -345,7 +345,7 @@ img, svg { display: block; }
 .resource-card-title { display: -webkit-box; min-width: 0; flex: 1; overflow: hidden; font-size: 12px; font-weight: 680; letter-spacing: -.025em; line-height: 1.35; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
 .resource-tools { display: flex; flex: 0 0 auto; gap: 3px; margin: -5px -5px 0 0; }
 .circle-action { display: grid; width: 44px; height: 44px; flex: 0 0 auto; place-items: center; border: 0; border-radius: 50%; background: transparent; color: var(--muted); transition: color var(--motion-fast) var(--ease-out), background var(--motion-fast) var(--ease-out), transform var(--motion-fast) var(--ease-out); }
-.circle-action:hover { background: color-mix(in srgb, var(--blue-soft) 76%, transparent); color: var(--text); transform: translateY(-1px); }
+.circle-action:hover { background: transparent; color: var(--text); transform: translateY(-1px); }
 .circle-action:active { transform: scale(.92); }
 .circle-action .icon { width: 18px; height: 18px; }
 .circle-action.is-added { background: var(--blue-soft); color: var(--blue-ink); animation: add-pop 280ms var(--ease-out); }
