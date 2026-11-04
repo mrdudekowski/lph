@@ -46,22 +46,27 @@
     move: '<path d="m8 7 4-4 4 4m-4-4v18m-4-4 4 4 4-4"/>',
   };
 
-  // Tiny Bold interface PNGs are bundled locally and recolored through CSS masks.
-  const tinyBold = {
-    library: 'list', manage: 'settings', search: 'search', plus: 'add', check: 'check',
-    close: 'close', user: 'profile', download: 'download', upload: 'upload',
-    checkCircle: 'checked', info: 'info', menu: 'menu', help: 'help', like: 'like',
+  // SVG Repo's Start Universal Tiny Oval icons are local SVGs recolored via CSS masks.
+  // Product-specific symbols and the existing heart keep their hand-authored SVGs.
+  const startTinyOval = {
+    home: 'home', library: 'list', manage: 'settings', search: 'search', plus: 'plus',
+    chevron: 'arrow-right', 'chevron-down': 'chevron-down', 'arrow-left': 'arrow-left',
+    close: 'close', user: 'user', download: 'download', upload: 'upload', menu: 'menu',
+    info: 'info', image: 'image', audio: 'volume', video: 'video',
+    external: 'link', play: 'play', pause: 'pause', clock: 'time',
+    filter: 'filter', dots: 'options', arrowUp: 'arrow-up', arrowDown: 'arrow-down',
+    grid: 'layout', message: 'chat', bulb: 'lamp',
   };
 
   function svg(name, size = 20, extraClass = '') {
-    const iconAsset = tinyBold[name];
+    const iconAsset = startTinyOval[name];
     if (iconAsset) {
-      return `<span class="icon icon8 ${extraClass}" style="--icon8-src:url('assets/icons/tiny-bold/${iconAsset}.png');width:${size}px;height:${size}px" aria-hidden="true"></span>`;
+      return `<span class="icon icon-repo ${extraClass}" style="--icon-src:url('assets/icons/start-tiny-oval/${iconAsset}.svg');--icon-size:${size}px" aria-hidden="true"></span>`;
     }
     const path = paths[name] || paths.file;
     const heart = name === 'heart';
     return `<svg class="icon ${heart ? 'icon-heart' : ''} ${extraClass}" width="${size}" height="${size}" viewBox="0 0 24 24" fill="${heart ? 'currentColor' : 'none'}" stroke="${heart ? 'none' : 'currentColor'}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${path}</svg>`;
   }
 
-  root.LPHIcons = Object.freeze({ svg, has: name => Boolean(paths[name] || tinyBold[name]) });
+  root.LPHIcons = Object.freeze({ svg, has: name => Boolean(paths[name] || startTinyOval[name]) });
 })(window);
