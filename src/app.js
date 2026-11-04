@@ -169,7 +169,7 @@
     const css = `--pack-accent:${packAccent(pack.accent)}`;
     return `<article class="folder-card-wrap" style="${css}">
       <button class="pack-folder" type="button" data-action="open-pack" data-pack-id="${escapeHtml(pack.id)}" data-focus-key="open-pack-${escapeHtml(pack.id)}" aria-label="Open ${escapeHtml(pack.name)}, ${count} files">
-        <span class="folder-top"><span class="folder-icon">${folderIcon(pack)}</span><span class="folder-more">${icon('chevron')}</span></span>
+        <span class="folder-top"><span class="folder-icon">${folderIcon(pack)}</span></span>
         <span class="folder-name">${escapeHtml(pack.name)}</span>
         <span class="folder-meta">${icon('file')} ${count} ${count === 1 ? 'file' : 'files'}</span>
       </button>

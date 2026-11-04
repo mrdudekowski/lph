@@ -272,7 +272,6 @@ img, svg { display: block; }
 .folder-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .folder-icon { display: grid; width: 39px; height: 39px; place-items: center; border: 1px solid color-mix(in srgb, var(--pack-accent, var(--blue)) 22%, var(--line)); border-radius: 14px; background: color-mix(in srgb, var(--pack-accent, var(--blue)) 9%, var(--surface)); color: var(--pack-accent, var(--blue)); }
 .folder-icon .icon { width: 20px; height: 20px; }
-.folder-more { color: var(--muted-2); }
 .folder-name { overflow: hidden; font-size: 14px; font-weight: 670; letter-spacing: -.035em; text-overflow: ellipsis; white-space: nowrap; }
 .folder-meta { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 11px; }
 .folder-meta .icon { width: 14px; height: 14px; }
