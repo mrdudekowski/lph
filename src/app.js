@@ -169,7 +169,6 @@
     const css = `--pack-accent:${packAccent(pack.accent)}`;
     return `<article class="folder-card-wrap" style="${css}">
       <button class="pack-folder" type="button" data-action="open-pack" data-pack-id="${escapeHtml(pack.id)}" data-focus-key="open-pack-${escapeHtml(pack.id)}" aria-label="Open ${escapeHtml(pack.name)}, ${count} files">
-        <svg class="folder-outline" viewBox="0 0 320 180" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M20 25h58q8 0 14-6l12-12q4-4 10-4h42q7 0 12 6l12 11q4 5 11 5h117q18 0 18 18v114q0 18-18 18H20q-18 0-18-18V43q0-18 18-18Z"/></svg>
         <span class="folder-top"><span class="folder-icon">${folderIcon(pack)}</span></span>
         <span class="folder-name">${escapeHtml(pack.name)}</span>
         <span class="folder-meta">${icon('file')} ${count} ${count === 1 ? 'file' : 'files'}</span>
